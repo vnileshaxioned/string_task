@@ -1,0 +1,59 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.container .form {
+    width: 100%;
+    text-align: center;
+}
+.form .form-group {
+    display: flex;
+}
+.form-group .control-form {
+    margin: 20px;
+    width: 50%;
+}
+.control-form .user-input {
+    width: 100%;
+    border: 1px solid rgb(122, 122, 122);
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.form .btn {
+    padding: 10px 20px;
+    background-color: rgb(21, 156, 55);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+.form .btn:hover {
+    background-color: rgb(18, 126, 45);
+}
+.output {
+    display: flex;
+}
+.output .box {
+    margin: 15px;
+    width: 50%;
+}
+.box .accurate {
+    background-color: rgb(52, 173, 82);
+    color: #fff;
+    padding: 5px;
+}
+.box .different {
+    background-color: rgb(219, 67, 67);
+    color: #fff;
+    padding: 5px;
+}
+.word-diff {
+    background-color: rgb(170, 58, 58);
+    color: #fff;
+    width: fit-content;
+    font-weight: bold;
+    padding: 0 5px;
+    border-radius: 5px;
+}
