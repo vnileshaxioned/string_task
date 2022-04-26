@@ -39,21 +39,42 @@
     margin: 15px;
     width: 50%;
 }
-.box .accurate {
-    background-color: rgb(52, 173, 82);
-    color: #fff;
-    padding: 5px;
-}
-.box .different {
+.box .different-first {
     background-color: rgb(219, 67, 67);
     color: #fff;
     padding: 5px;
 }
-.word-diff {
+.box .different-second {
+    background-color: rgb(52, 173, 82);
+    color: #fff;
+    padding: 5px;
+}
+.word-diff-first {
     background-color: rgb(170, 58, 58);
     color: #fff;
     width: fit-content;
     font-weight: bold;
     padding: 0 5px;
-    border-radius: 5px;
+}
+.word-diff-second {
+    background-color: rgb(33, 117, 54);
+    color: #fff;
+    width: fit-content;
+    font-weight: bold;
+    padding: 0 5px;
+}
+.container .identical {
+    background-color: rgb(255, 213, 134);
+    color: rgb(255, 72, 0);
+    padding: 15px 30px;
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+}
+.validate {
+    color: rgb(255, 0, 0);
+    padding: 15px 30px;
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
 }

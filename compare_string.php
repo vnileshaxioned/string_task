@@ -1,56 +1,5 @@
 <?php
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $string_first = $_POST['string_first'];
-    $string_second = $_POST['string_second'];
-
-    $i = 0;
-    // compare both string
-    $similar = strcmp($string_first, $string_second);
-
-    // convert to array
-    $str1 = explode(" ", $string_first);
-    $str2 = explode(" ", $string_second);
-
-    $notequal = array();
-    // if $similar is equal to zero both the inputs are same
-    if ($similar == 0) {
-        // echo "accurate";
-    } else {
-        foreach ($str1 as $str1_key => $str1_val) {
-            foreach ($str2 as $str2_key => $str2_val) {
-                if ($str1_key == $str2_key) {
-                    if ($str1_val != $str2_val) {
-                        $notequal[] = $str1_val; // different value of string first store in array
-                        $notequal[] = $str2_val; // different value of string second store in same array
-                    }
-                }
-            }
-        }
-    }
-
-    // for string first
-    $str1_diff = array();
-    foreach ($notequal as $different) {
-        foreach ($str1 as $word_key => $word_val) {
-            if ($different == $word_val) {
-                $str1_diff[$word_key] = "<span class='word-diff'>$different</span>"; // seperate the string first with dark color
-            }
-        }
-    }
-
-    // for string second
-    $str2_diff = array();
-    foreach ($notequal as $different) {
-        foreach ($str2 as $word_key => $word_val) {
-            if ($different == $word_val) {
-                $str2_diff[$word_key] = "<span class='word-diff'>$different</span>"; // seperate the string second with dark color
-            }
-        }
-    }
-    
-}
-
+require('code.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,39 +31,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <?php
             if ($i != strlen($string_first) && $i != strlen($string_second)) {
+                if ($similar != 0) {
         ?>
         <div class="output">
             <div class="box">
                 <?php
-                    if ($similar == 0) {
-                        echo "<p class='accurate'>".$string_first."<p>";
-                    } else {
+                    if ($similar != 0) {
                         $replace = array();
                         foreach ($str1 as $word_key => $word_val) {
                             $replace[] = $word_val;
-                            foreach ($notequal as $different) {
+                            foreach ($notequal_first as $different) {
                                 if ($different == $word_val) {
                                     foreach ($str1_diff as $diff_key => $diff_val) {
                                         if ($diff_key == $word_key) {
-                                            $replace[$diff_key] = $diff_val;
+                                            $replace[$word_key] = $diff_val;
                                         }
                                     }
                                 }
                             }
                         }
-                        echo "<p class='different'>".implode(" ",$replace)."</p>";
+                        echo "<p class='different-first'>".implode(" ",$replace)."</p>";
                     }
                 ?>
             </div>
             <div class="box">
                 <?php
-                    if ($similar == 0) {
-                        echo "<p class='accurate'>".$string_second."<p>";
-                    } else {
+                    if ($similar != 0) {
                         $replace = array();
                         foreach ($str2 as $word_key => $word_val) {
                             $replace[] = $word_val;
-                            foreach ($notequal as $different) {
+                            foreach ($notequal_second as $different) {
                                 if ($different == $word_val) {
                                     foreach ($str2_diff as $diff_key => $diff_val) {
                                         if ($diff_key == $word_key) {
@@ -124,12 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 }
                             }
                         }
-                        echo "<p class='different'>".implode(" ",$replace)."</p>";
+                        echo "<p class='different-second'>".implode(" ",$replace)."</p>";
                     }
                 ?>
             </div>
         </div>
-        <?php } ?>
+        <?php
+            } else {
+                echo "<p class='identical'>The two strings are identical</p>";
+            }
+        } else {
+            echo "<p class='validate'>Both input fields are required</p>";
+        }
+        ?>
     </div>
 </body>
 </html>
