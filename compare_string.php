@@ -30,8 +30,7 @@ require('code.php');
             </div>
         </div>
         <?php
-            if ($i != strlen($string_first) && $i != strlen($string_second)) {
-                if ($similar != 0) {
+            if ($similar != 0) {
         ?>
         <div class="output">
             <div class="box">
@@ -76,12 +75,11 @@ require('code.php');
             </div>
         </div>
         <?php
+            } elseif (($i == strlen($string_first)) || ($i == strlen($string_second))) {
+                echo "<p class='validate'>Both input fields are required</p>";
             } else {
                 echo "<p class='identical'>The two strings are identical</p>";
             }
-        } else {
-            echo "<p class='validate'>Both input fields are required</p>";
-        }
         ?>
     </div>
 </body>
