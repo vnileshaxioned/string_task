@@ -76,7 +76,7 @@ require('code.php');
         </div>
         <?php
             } elseif (($i == strlen($string_first)) || ($i == strlen($string_second))) {
-                echo "<p class='validate'>Both input fields are required</p>";
+                echo "<p class='validate'>Both fields are required</p>";
             } else {
                 echo "<p class='identical'>The two strings are identical</p>";
             }

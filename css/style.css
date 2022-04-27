@@ -57,7 +57,7 @@
     padding: 0 5px;
 }
 .word-diff-second {
-    background-color: rgb(33, 117, 54);
+    background-color: rgb(26, 114, 48);
     color: #fff;
     width: fit-content;
     font-weight: bold;
@@ -65,7 +65,7 @@
 }
 .container .identical {
     background-color: rgb(255, 213, 134);
-    color: rgb(255, 72, 0);
+    color: rgb(245, 69, 0);
     padding: 15px 30px;
     width: 60%;
     margin: 20px auto;

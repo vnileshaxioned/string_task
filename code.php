@@ -45,28 +45,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
         }
-    
-        foreach ($str1 as $str1_key => $str1_val) {
-            foreach ($str2 as $str2_key => $str2_val) {
-                if ($str1_key == $str2_key) {
-                    if ($str1_val != $str2_val) {
-                        // echo $str1_val." ".$str2_val."<br>";
-                        $notequal_first[$str1_key] = $str1_val; // different value of string first store in array
-                        $notequal_second[$str2_key] = $str2_val; // different value of string second store in same array
-                    }
-                }
+        for ($i = 0; $i <= count($str1); $i++) {
+            if ($str1[$i] != $str2[$i]) {
+                $notequal_first[$i] = $str1[$i]; // different value of string first store in array
+                $notequal_second[$i] = $str2[$i]; // different value of string second store in same array
             }
         }
     }
-
-
 
     // for string first
     $str1_diff = array();
     for ($i = 0; $i <= count($notequal_first); $i++) {
         if ($notequal_first[$i] != $equal_first[$i]) {
             $str1_diff[$i] = "<span class='word-diff-first'>".$notequal_first[$i]."</span>";
-            // echo $notequal_first[$i];
         }
     }
 
