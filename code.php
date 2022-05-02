@@ -15,60 +15,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $notequal_first = array();
     $notequal_second = array();
-    $equal_first = array();
-    $equal_second = array();
+    $eqfirst = array();
+    $eqsecond = array();
     // if $similar is equal to zero both the inputs are same
-    if ($similar == 0) {
-        // echo "accurate";
+    if (($i == strlen($string_first)) || ($i == strlen($string_second))) {
+        $msg = "<p class='validate'>Both fields are required</p>";
+    } elseif ($similar == 0) {
+        $msg = "<p class='identical'>The two strings are identical</p>";
     } else {
-        foreach ($str1 as $str1_key => $str1_val) {
-            foreach ($str2 as $str2_key => $str2_val) {
-                if ($str1_val == $str2_val) {
-                    if ($str1_key != $str2_key) {
-                        if ($str1_key > $str2_key) {
-                            $eq_first[$str1_key] = $str2[$str2_key];
-                            foreach ($eq_first as $e_key => $e_val) {
-                                if ($str1_key == $e_key) {
-                                    $equal_first[$str1_key] = $str1_val;
+        if ($similar != 0) {
+            foreach ($str1 as $s1key => $s1val) {
+                foreach ($str2 as $s2key => $s2val) {
+                    if ($s1val == $s2val) {
+                        if ($s1key == $s2key) {
+                            $eqfirst[$s1key] = $s1val;
+                            $eqsecond[$s2key] = $s2val;
+                        }
+                        if ($s1key > $s2key) {
+                            $eq[$s2key+1] = $s2val;
+                            foreach ($eq as $eqkey => $eqval) {
+                                if ($eqkey == $s1key) {
+                                    $eqfirst[$eqkey] = $s1val;
                                 }
                             }
                         }
-                        if ($str2_key < $str1_key) {
-                            $eq_second[$str2_key] = $str1[$str1_key];
-                            foreach ($eq_second as $e_key => $e_val) {
-                                if ($str2_key == $e_key) {
-                                    $equal_second[$str2_key] = $str2_val;
+                        if ($s1key < $s2key) {
+                            $eqsec[$s1key+1] = $s1val;
+                            foreach ($eqsec as $eqkey => $eqval) {
+                                if ($eqkey == $s2key) {
+                                    $eqsecond[$eqkey] = $s2val;
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-        for ($i = 0; $i <= count($str1); $i++) {
-            if ($str1[$i] != $str2[$i]) {
-                $notequal_first[$i] = $str1[$i]; // different value of string first store in array
-                $notequal_second[$i] = $str2[$i]; // different value of string second store in same array
+            // not equal
+            
+            for ($i = 0; $i < count($str1); $i++) {
+                if ($str1[$i] != $eqfirst[$i]) {
+                    $notequal_first[$i] = "<span class='word-diff-first'>".$str1[$i]."</span>";
+                }
+            }
+            
+            for ($i = 0; $i < count($str2); $i++) {
+                if ($str2[$i] != $eqsecond[$i]) {
+                    $notequal_second[$i] = "<span class='word-diff-second'>".$str2[$i]."</span>";
+                }
             }
         }
     }
-
-    // for string first
-    $str1_diff = array();
-    for ($i = 0; $i <= count($notequal_first); $i++) {
-        if ($notequal_first[$i] != $equal_first[$i]) {
-            $str1_diff[$i] = "<span class='word-diff-first'>".$notequal_first[$i]."</span>";
-        }
-    }
-
-    // for string second
-    $str2_diff = array();
-    for ($i = 0; $i <= count($notequal_second); $i++) {
-        if ($notequal_second[$i] != $equal_second[$i]) {
-            $str2_diff[$i] = "<span class='word-diff-second'>".$notequal_second[$i]."</span>";
-        }
-    }
-
 }
 
 ?>

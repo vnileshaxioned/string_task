@@ -29,9 +29,6 @@ require('code.php');
                 </form>
             </div>
         </div>
-        <?php
-            if ($similar != 0) {
-        ?>
         <div class="output">
             <div class="box">
                 <?php
@@ -39,13 +36,9 @@ require('code.php');
                         $replace = array();
                         foreach ($str1 as $word_key => $word_val) {
                             $replace[] = $word_val;
-                            foreach ($notequal_first as $different) {
-                                if ($different == $word_val) {
-                                    foreach ($str1_diff as $diff_key => $diff_val) {
-                                        if ($diff_key == $word_key) {
-                                            $replace[$word_key] = $diff_val;
-                                        }
-                                    }
+                            foreach ($notequal_first as $diff_key => $different) {
+                                if ($diff_key == $word_key) {
+                                    $replace[$word_key] = $different;
                                 }
                             }
                         }
@@ -59,13 +52,9 @@ require('code.php');
                         $replace = array();
                         foreach ($str2 as $word_key => $word_val) {
                             $replace[] = $word_val;
-                            foreach ($notequal_second as $different) {
-                                if ($different == $word_val) {
-                                    foreach ($str2_diff as $diff_key => $diff_val) {
-                                        if ($diff_key == $word_key) {
-                                            $replace[$diff_key] = $diff_val;
-                                        }
-                                    }
+                            foreach ($notequal_second as $diff_key => $different) {
+                                if ($diff_key == $word_key) {
+                                    $replace[$word_key] = $different;
                                 }
                             }
                         }
@@ -74,13 +63,7 @@ require('code.php');
                 ?>
             </div>
         </div>
-        <?php
-            } elseif (($i == strlen($string_first)) || ($i == strlen($string_second))) {
-                echo "<p class='validate'>Both fields are required</p>";
-            } else {
-                echo "<p class='identical'>The two strings are identical</p>";
-            }
-        ?>
+        <?php echo $msg; ?>
     </div>
 </body>
 </html>
